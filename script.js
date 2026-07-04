@@ -6,6 +6,23 @@ const cartButton = document.querySelector(".cart-button");
 const leaves = [...document.querySelectorAll(".leaf")];
 const butterflies = [...document.querySelectorAll(".butterfly")];
 const storySection = document.querySelector(".image-story");
+const mediaFrame = document.querySelector("#mediaFrame");
+const mediaTilt = document.querySelector("#mediaTilt");
+
+if (mediaFrame && mediaTilt) {
+  mediaFrame.addEventListener("mousemove", (event) => {
+    const rect = mediaFrame.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    const rotateY = x * 14;
+    const rotateX = y * -14;
+    mediaTilt.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+  });
+
+  mediaFrame.addEventListener("mouseleave", () => {
+    mediaTilt.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  });
+}
 
 thumbs.forEach((thumb, index) => {
   thumb.addEventListener("click", () => {
