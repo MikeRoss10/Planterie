@@ -2,7 +2,6 @@ const mainImage = document.querySelector(".main-image");
 const imageCount = document.querySelector(".image-count");
 const thumbs = [...document.querySelectorAll(".thumb")];
 const quantityInput = document.querySelector("#quantity");
-const cartButton = document.querySelector(".cart-button");
 const butterflies = [...document.querySelectorAll(".butterfly")];
 const storySection = document.querySelector(".image-story");
 const mediaFrame = document.querySelector("#mediaFrame");
@@ -55,12 +54,88 @@ document.querySelectorAll(".accordion > button").forEach((button) => {
 
 document.querySelector(".purchase-panel").addEventListener("submit", (event) => {
   event.preventDefault();
-  const quantity = Number.parseInt(quantityInput.value, 10) || 1;
-  cartButton.textContent = `Added to cart (${quantity})`;
-  window.setTimeout(() => {
-    cartButton.textContent = "Add to cart";
-  }, 1400);
 });
+
+const bookNowButton = document.querySelector("#bookNowButton");
+const bookingOverlay = document.querySelector("#bookingOverlay");
+const bookingClose = document.querySelector("#bookingClose");
+const bookingDate = document.querySelector("#bookingDate");
+const bookingTime = document.querySelector("#bookingTime");
+const bookingError = document.querySelector("#bookingError");
+const bookingConfirmButton = document.querySelector("#bookingConfirmButton");
+const bookingStepForm = document.querySelector("#bookingStepForm");
+const bookingStepSuccess = document.querySelector("#bookingStepSuccess");
+const bookingSummary = document.querySelector("#bookingSummary");
+const bookingDoneButton = document.querySelector("#bookingDoneButton");
+
+const todayIso = new Date().toISOString().split("T")[0];
+if (bookingDate) {
+  bookingDate.min = todayIso;
+}
+
+const openBooking = () => {
+  bookingOverlay.hidden = false;
+  bookingStepForm.hidden = false;
+  bookingStepSuccess.hidden = true;
+  bookingError.hidden = true;
+  document.body.style.overflow = "hidden";
+};
+
+const closeBooking = () => {
+  bookingOverlay.hidden = true;
+  document.body.style.overflow = "";
+};
+
+if (bookNowButton) {
+  bookNowButton.addEventListener("click", openBooking);
+}
+
+if (bookingClose) {
+  bookingClose.addEventListener("click", closeBooking);
+}
+
+if (bookingOverlay) {
+  bookingOverlay.addEventListener("click", (event) => {
+    if (event.target === bookingOverlay) {
+      closeBooking();
+    }
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && bookingOverlay && !bookingOverlay.hidden) {
+    closeBooking();
+  }
+});
+
+if (bookingConfirmButton) {
+  bookingConfirmButton.addEventListener("click", () => {
+    const dateValue = bookingDate.value;
+    const timeValue = bookingTime.value;
+
+    if (!dateValue || !timeValue) {
+      bookingError.hidden = false;
+      return;
+    }
+
+    bookingError.hidden = true;
+    const quantity = Number.parseInt(quantityInput.value, 10) || 1;
+    const formattedDate = new Date(`${dateValue}T00:00:00`).toLocaleDateString(undefined, {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    bookingSummary.textContent = `${formattedDate} at ${timeValue} for ${quantity} ${quantity > 1 ? "people" : "person"}.`;
+    bookingStepForm.hidden = true;
+    bookingStepSuccess.hidden = false;
+  });
+}
+
+if (bookingDoneButton) {
+  bookingDoneButton.addEventListener("click", closeBooking);
+}
 
 const updateButterflies = () => {
   const scrollY = window.scrollY;
