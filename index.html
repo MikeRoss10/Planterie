@@ -141,8 +141,43 @@
               <input id="quantity" name="quantity" value="1" min="1" inputmode="numeric">
               <button type="button" class="quantity-button" data-step="1" aria-label="Increase quantity">+</button>
             </div>
-            <button class="cart-button" type="submit">Add to cart</button>
+            <button class="cart-button" id="bookNowButton" type="button">Book Now</button>
           </form>
+
+          <div class="booking-overlay" id="bookingOverlay" hidden>
+            <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+              <button class="booking-close" id="bookingClose" type="button" aria-label="Close booking">&times;</button>
+
+              <div class="booking-step" id="bookingStepForm">
+                <p class="eyebrow">Reserve your slot</p>
+                <h3 id="bookingTitle">Pick a date &amp; time</h3>
+
+                <label for="bookingDate">Date</label>
+                <input type="date" id="bookingDate" name="bookingDate">
+
+                <label for="bookingTime">Time slot</label>
+                <select id="bookingTime" name="bookingTime">
+                  <option value="">Select a time</option>
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="12:00 PM">12:00 PM</option>
+                  <option value="2:00 PM">2:00 PM</option>
+                  <option value="4:00 PM">4:00 PM</option>
+                  <option value="6:00 PM">6:00 PM</option>
+                </select>
+
+                <p class="booking-error" id="bookingError" hidden>Please choose both a date and a time slot.</p>
+
+                <button class="cart-button" id="bookingConfirmButton" type="button">Confirm booking</button>
+              </div>
+
+              <div class="booking-step booking-success" id="bookingStepSuccess" hidden>
+                <div class="booking-check" aria-hidden="true">&#10003;</div>
+                <h3>Slot booked!</h3>
+                <p id="bookingSummary">Your terrarium slot is reserved.</p>
+                <button class="cart-button" id="bookingDoneButton" type="button">Done</button>
+              </div>
+            </div>
+          </div>
 
           <section class="accordion">
             <button type="button" aria-expanded="false">
@@ -330,7 +365,7 @@
 
     <footer class="footer">
       <div>
-        <h2>Planterie</h2>
+        <img class="footer-logo" src="planterie-logo.png" alt="Planterie">
         <p>Plants, terrariums, arrangements, and workshops for slower, greener days.</p>
       </div>
       <nav aria-label="Footer navigation">
