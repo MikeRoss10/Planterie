@@ -443,6 +443,140 @@ h1 {
   transform: translateY(1px) scale(0.995);
 }
 
+.booking-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(15, 28, 24, 0.52);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  animation: bookingFade 200ms ease;
+}
+
+.booking-overlay[hidden] {
+  display: none;
+}
+
+@keyframes bookingFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.booking-modal {
+  position: relative;
+  width: min(440px, 100%);
+  background: var(--white);
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 30px 70px rgba(15, 28, 24, 0.28);
+  animation: bookingPop 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes bookingPop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.booking-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: var(--paper);
+  border-radius: 999px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background 160ms ease;
+}
+
+.booking-close:hover {
+  background: var(--paper-deep);
+}
+
+.booking-step h3 {
+  margin: 4px 0 22px;
+  font-size: 28px;
+}
+
+.booking-step label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 16px 0 6px;
+}
+
+.booking-step input,
+.booking-step select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.booking-step input:focus,
+.booking-step select:focus {
+  outline: 2px solid var(--teal);
+  outline-offset: 1px;
+}
+
+.booking-error {
+  color: #b3372c;
+  font-size: 13px;
+  margin: 12px 0 0;
+}
+
+.booking-step .cart-button {
+  margin-top: 24px;
+  border-radius: 12px;
+}
+
+.booking-success {
+  text-align: center;
+}
+
+.booking-check {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 18px;
+  border-radius: 999px;
+  background: var(--teal);
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.booking-success p {
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.booking-success .cart-button {
+  border-radius: 12px;
+}
+
 .accordion {
   border-top: 1px solid var(--line);
 }
@@ -590,8 +724,7 @@ h1 {
 }
 
 .studio-flow h2,
-.details-band h2,
-.footer h2 {
+.details-band h2 {
   margin: 0;
   font-size: clamp(34px, 4vw, 56px);
   line-height: 1;
@@ -808,8 +941,11 @@ h1 {
   max-width: 1180px;
 }
 
-.footer h2 {
-  font-size: 38px;
+.footer-logo {
+  width: 168px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  margin-bottom: 14px;
 }
 
 .footer p {
