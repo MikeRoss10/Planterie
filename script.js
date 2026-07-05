@@ -3,7 +3,6 @@ const imageCount = document.querySelector(".image-count");
 const thumbs = [...document.querySelectorAll(".thumb")];
 const quantityInput = document.querySelector("#quantity");
 const cartButton = document.querySelector(".cart-button");
-const leaves = [...document.querySelectorAll(".leaf")];
 const butterflies = [...document.querySelectorAll(".butterfly")];
 const storySection = document.querySelector(".image-story");
 const mediaFrame = document.querySelector("#mediaFrame");
@@ -63,17 +62,8 @@ document.querySelector(".purchase-panel").addEventListener("submit", (event) => 
   }, 1400);
 });
 
-const updateLeaves = () => {
+const updateButterflies = () => {
   const scrollY = window.scrollY;
-  const pageHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-  const progress = scrollY / pageHeight;
-
-  leaves.forEach((leaf, index) => {
-    const drift = scrollY * (0.18 + index * 0.045) + progress * 280;
-    const spin = 18 + scrollY * (0.035 + index * 0.01);
-    leaf.style.setProperty("--leaf-scroll", `${drift}px`);
-    leaf.style.setProperty("--leaf-rotate", `${spin}deg`);
-  });
 
   if (!storySection) return;
 
@@ -112,5 +102,5 @@ document.querySelectorAll(".reveal").forEach((element) => {
   revealObserver.observe(element);
 });
 
-updateLeaves();
-window.addEventListener("scroll", updateLeaves, { passive: true });
+updateButterflies();
+window.addEventListener("scroll", updateButterflies, { passive: true });
