@@ -194,7 +194,20 @@
   };
 
   updateButterflies();
-  window.addEventListener("scroll", updateButterflies, { passive: true });
+
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateButterflies();
+        ticking = false;
+      });
+    },
+    { passive: true }
+  );
 })();
 
 // ---- Reveal-on-scroll ----
