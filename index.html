@@ -8,6 +8,8 @@
       name="description"
       content="Reserve a DIY terrarium slot at Planterie. Choose plants, layer soil, add moss and stones, and build a miniature ecosystem at your own pace."
     >
+    <link rel="preload" href="red-hat-text.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="newsreader.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -68,7 +70,7 @@
         </nav>
 
         <a class="brand" href="#" aria-label="Planterie home">
-          <img src="planterie-logo.png" alt="Planterie">
+          <img src="planterie-logo.png" alt="Planterie" loading="eager" decoding="async">
         </a>
 
         <div class="header-actions" aria-label="Account and cart">
@@ -83,31 +85,31 @@
         <div class="product-media product-gallery" aria-label="DIY Terrarium product gallery">
           <div class="thumb-row" aria-label="Product thumbnails">
             <button class="thumb is-active" type="button" data-image="terrarium-main.jpg" data-alt="Hands building a glass terrarium at Planterie">
-              <img src="terrarium-main.jpg" alt="">
+              <img src="terrarium-main.jpg" alt="" loading="eager" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="terrarium-bowl.png" data-alt="Finished bowl terrarium with miniature scene">
-              <img src="terrarium-bowl.png" alt="">
+              <img src="terrarium-bowl.png" alt="" loading="lazy" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="terrarium-jar.png" data-alt="Glass jar terrarium on a workshop table">
-              <img src="terrarium-jar.png" alt="">
+              <img src="terrarium-jar.png" alt="" loading="lazy" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="terrarium-batch.png" data-alt="Multiple open terrariums grouped together">
-              <img src="terrarium-batch.png" alt="">
+              <img src="terrarium-batch.png" alt="" loading="lazy" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="gift-packaging.png" data-alt="Terrariums packed in kraft gift carriers">
-              <img src="gift-packaging.png" alt="">
+              <img src="gift-packaging.png" alt="" loading="lazy" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="workshop-table.png" data-alt="Planterie workshop table filled with plants">
-              <img src="workshop-table.png" alt="">
+              <img src="workshop-table.png" alt="" loading="lazy" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="studio-shelf.png" data-alt="Planterie studio shelf with plants and pots">
-              <img src="studio-shelf.png" alt="">
+              <img src="studio-shelf.png" alt="" loading="lazy" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="storefront.png" data-alt="Planterie storefront with plants outside">
-              <img src="storefront.png" alt="">
+              <img src="storefront.png" alt="" loading="lazy" decoding="async">
             </button>
             <button class="thumb" type="button" data-image="studio-corner.png" data-alt="Green corner inside the Planterie studio">
-              <img src="studio-corner.png" alt="">
+              <img src="studio-corner.png" alt="" loading="lazy" decoding="async">
             </button>
           </div>
           <div class="media-frame" id="mediaFrame">
@@ -116,6 +118,9 @@
                 class="main-image"
                 src="terrarium-main.jpg"
                 alt="Hands building a glass terrarium at Planterie"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
               >
             </div>
             <span class="image-count">1/9</span>
@@ -231,9 +236,9 @@
           </p>
         </div>
         <div class="story-grid">
-          <img src="workshop-table.png" alt="Planterie workshop table filled with plants">
-          <img src="storefront.png" alt="Planterie storefront with plants outside">
-          <img src="terrarium-batch.png" alt="Multiple open terrariums grouped together">
+          <img src="workshop-table.png" alt="Planterie workshop table filled with plants" loading="lazy" decoding="async">
+          <img src="storefront.png" alt="Planterie storefront with plants outside" loading="lazy" decoding="async">
+          <img src="terrarium-batch.png" alt="Multiple open terrariums grouped together" loading="lazy" decoding="async">
         </div>
       </section>
 
@@ -263,7 +268,7 @@
 
       <section class="details-band reveal">
         <div class="band-image">
-          <img src="gift-packaging.png" alt="Gift packed terrariums in kraft carriers">
+          <img src="gift-packaging.png" alt="Gift packed terrariums in kraft carriers" loading="lazy" decoding="async">
         </div>
         <div class="band-copy">
           <p class="eyebrow">Reserve before you arrive</p>
@@ -365,7 +370,7 @@
 
     <footer class="footer">
       <div>
-        <img class="footer-logo" src="planterie-logo.png" alt="Planterie">
+        <img class="footer-logo" src="planterie-logo.png" alt="Planterie" loading="lazy" decoding="async">
         <p>Plants, terrariums, arrangements, and workshops for slower, greener days.</p>
       </div>
       <nav aria-label="Footer navigation">
@@ -376,6 +381,6 @@
       </nav>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
